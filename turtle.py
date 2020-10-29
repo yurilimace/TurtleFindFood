@@ -1,26 +1,35 @@
 import pygame
-class Turtle(object):
-    def __init__(self):
-        self.x = 92 + 260
-        self.y = 27 + 260
-        self.largura = 25
-        self.altura = 25
-        self.rect = pygame.Rect(self.x,self.y,self.largura,self.altura)
+import pygame
 
-    def desenhaTurtle(self,tela):
-        pygame.draw.rect(tela, (255, 255, 255),self.rect)
+class Turtle(pygame.sprite.Sprite):
+    def __init__(self,width,height,x,y,color):
+        super().__init__()
+        self.image = pygame.image.load("turtle.png")
+        self.image = pygame.transform.scale(self.image,(49,49))
+        #self.image.fill(color)
+        self.rect = self.image.get_rect()
+        self.rect.center = [x,y]
 
     def MovimentaTartaruga(self,tipoMovimento):
         print(tipoMovimento)
+        contador = 0
         #movimenta a tartaruga para cima
         if tipoMovimento == "1":
-            self.rect.y -= 10
+            while(contador < 50):
+                self.rect.y -= 10
+                contador += 10
         # movimenta a tartaruga para baixo
         elif tipoMovimento == "2":
-            self.rect.y += 10
+            while (contador < 50):
+                self.rect.y += 10
+                contador += 10
         #movimenta a tartaruga para direita
         elif tipoMovimento == "3":
-            self.rect.x += 10
+            while (contador < 50):
+                self.rect.x += 10
+                contador += 10
         # movimenta a tartaruga para esquerda
         elif tipoMovimento == "4":
-            self.rect.x -= 10
+            while (contador < 50):
+                self.rect.x -= 10
+                contador += 10
