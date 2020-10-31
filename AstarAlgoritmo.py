@@ -23,36 +23,40 @@ def PrintaMatriz(matriz):
 
 def aStar():
     pontoFinal = [0,0]
-    pontoInicial = [0,9]
+    pontoInicial = [5,5]
     distanciaP = numpy.linalg.norm(numpy.array(pontoInicial)-numpy.array(pontoFinal))
     caminho = []
+    movimento = []
     caminho.append(pontoInicial)
     loop = True
     while(loop):
         distancias = []
         pontos = []
-
+        animacao = []
         #verificar a casa de cima
         ponto1 = [pontoInicial[0]-1,pontoInicial[1]]
         if(ponto1[0] >= 0):
             pontos.append(ponto1)
+            animacao.append(1)
             distancias.append(numpy.linalg.norm(numpy.array(ponto1) - numpy.array(pontoFinal)))
         #verificar  a casa de baixo
         ponto1 = [pontoInicial[0]+1, pontoInicial[1]]
         if(ponto1[0] < 9):
             distancias.append(numpy.linalg.norm(numpy.array(ponto1) - numpy.array(pontoFinal)))
             pontos.append(ponto1)
-
+            animacao.append(2)
         #verificar a casa de direita
         ponto1 = [pontoInicial[0], pontoInicial[1]+1]
         if(ponto1[1] < 9):
             distancias.append(numpy.linalg.norm(numpy.array(ponto1)-numpy.array(pontoFinal)))
             pontos.append(ponto1)
+            animacao.append(3)
         #verificar a casa da esquerda
         ponto1 = [pontoInicial[0], pontoInicial[1] - 1]
         if(ponto1[1]>=0):
             distancias.append(numpy.linalg.norm(numpy.array(ponto1)-numpy.array(pontoFinal)))
             pontos.append(ponto1)
+            animacao.append(4)
         #print(pontos)
 
         #remove se o caminho estiver dentro de pontos
@@ -61,6 +65,7 @@ def aStar():
                 if i in pontos:
                     index = pontos.index(i)
                     pontos.remove(i)
+                    del(animacao[index])
                     del(distancias[index])
 
 
@@ -68,6 +73,7 @@ def aStar():
         # index da menor distancia calculada comparada com a distancia P
         low = distancias.index(min(distancias))
         caminho.append(pontos[low])
+        movimento.append(animacao[low])
         pontoInicial = pontos[low]
         distanciaP = numpy.linalg.norm(numpy.array(pontoInicial) - numpy.array(pontoFinal))
 
@@ -76,6 +82,8 @@ def aStar():
             print(caminho)
             loop = False;
             break;
+
+    return movimento
 
 
 
@@ -91,6 +99,7 @@ def main():
     #pontoA = numpy.array((1,1))
     #pontoB = numpy.array((10,10))
     #print(pontoA[0])
-    aStar()
+    turtle = aStar()
+    print(turtle)
 
 main()
