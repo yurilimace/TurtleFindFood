@@ -9,6 +9,13 @@ class Turtle(pygame.sprite.Sprite):
         #self.image.fill(color)
         self.rect = self.image.get_rect()
         self.rect.center = [x,y]
+        self.gridPos = 0
+
+
+
+    def setPosicaoInicial(self,x,y,matriz):
+        self.rect.center = matriz[x][y]
+        self.gridPos = (x,y)
 
     def MovimentaTartaruga(self,tipoMovimento):
         print(tipoMovimento)
