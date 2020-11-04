@@ -1,4 +1,9 @@
 # TurtleFindFood
 Criado para a disciplina de Inteligência Computacional
-## Executar
+
+##Autor
+José Yuri Lima Lira
+
+### Executar
+
 Para executar o codigo rode o arquivo main.py
