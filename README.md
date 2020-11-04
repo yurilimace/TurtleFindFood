@@ -1,7 +1,7 @@
 # TurtleFindFood
 Criado para a disciplina de Inteligência Computacional
 
-##Autor
+## Autor
 José Yuri Lima Lira
 
 ### Executar
